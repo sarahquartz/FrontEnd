@@ -1,0 +1,17 @@
+a, span, strong{
+    color: green;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+h1, div, p{
+    border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.div1{
+    background-color: blueviolet;
+    display: inline-block;
+}
+
+.titulo_principal{
+    background-color: aqua;
+}
