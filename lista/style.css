@@ -1,0 +1,26 @@
+ul, ol{
+    font-family: helvetica, Arial, sans-serif;
+    border: 1px solid black;
+    width: 20%;
+    background-color: rgba(189, 189, 197, 0.644);
+    color: rgb(31, 30, 30);
+    border-radius: 4px;
+    font-size: 20px;
+}
+
+ul:hover{
+    margin: 20px;
+    background-color: rgb(189, 189, 197);
+}
+
+ol:hover{
+    margin: 20px;
+    background-color: rgba(189, 189, 197, 0.815);
+}
+
+li:hover{
+    color: rgb(184, 6, 6);
+    cursor:default;
+    font-size: 22px;
+
+}

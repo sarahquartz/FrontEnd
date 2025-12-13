@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial CSS Display</title>
+    <style>
+        :root {
+            --primary: #6709e3;
+            --secondary: #74b9ff;
+            --bg: #dfe6e9;
+            --text: #2d3436;
+            --code-bg: #2d3436;
+            --code-text: #fab1a0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        /* Container Principal */
+        .card {
+            background: white;
+            width: 90%;
+            max-width: 650px;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Slides */
+        .slide {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        .slide.active { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 { color: var(--primary); margin-top: 0; border-bottom: 2px solid #f1f2f6; padding-bottom: 10px;}
+        p { line-height: 1.6; }
+
+        /* Código */
+        pre {
+            background-color: var(--code-bg);
+            color: var(--code-text);
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: 'Consolas', monospace;
+            font-size: 0.9rem;
+        }
+
+        /* Área de Demonstração */
+        .demo-area {
+            border: 2px dashed #b2bec3;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            background: #f1f2f6;
+        }
+
+        /* Controles */
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+            border-top: 1px solid #eee;
+            padding-top: 1rem;
+        }
+
+        button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s;
+        }
+
+        button:hover { background-color: #0c2461; }
+        button:disabled { background-color: #b2bec3; cursor: not-allowed; }
+        button.secondary { background-color: #636e72; }
+
+        /* --- Estilos Específicos para este Tutorial --- */
+
+        /* Block */
+        .ex-block {
+            background-color: #ff7675;
+            color: white;
+            padding: 10px;
+            margin-bottom: 5px;
+            border: 1px solid #d63031;
+            /* display: block é o padrão de divs, mas reforçamos aqui */
+            display: block; 
+        }
+
+        /* Inline */
+        .ex-inline {
+            background-color: #55efc4;
+            color: #2d3436;
+            padding: 5px;
+            border: 1px solid #00b894;
+            display: inline;
+        }
+
+        /* Inline-Block */
+        .ex-inline-block {
+            background-color: #a29bfe;
+            color: white;
+            padding: 15px;
+            width: 80px; /* Largura é respeitada */
+            height: 50px; /* Altura é respeitada */
+            margin: 5px;
+            display: inline-block;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        /* Span */
+        .texto-destaque {
+            color: #d63031;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+
+        /* None Interaction */
+        .caixa-magica {
+            width: 100px;
+            height: 100px;
+            background-color: #fdcb6e;
+            display: block;
+            margin: 10px auto;
+            text-align: center;
+            line-height: 100px;
+            font-weight: bold;
+        }
+        
+        .btn-toggle {
+            font-size: 0.8rem; 
+            padding: 5px 10px; 
+            background: #2d3436;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <div style="text-align: right; font-size: 0.8rem; color: #888;">
+            Passo <span id="step-count">1</span> de 8
+        </div>
+
+        <div class="slide active">
+            <h2>Propriedade Display</h2>
+            <p>A propriedade <code>display</code> é a mais importante do CSS para controlar layout. Ela define como os elementos se comportam no fluxo da página.</p>
+            <ul>
+                <li><strong>Block:</strong> Ocupa a linha toda.</li>
+                <li><strong>Inline:</strong> Fica na mesma linha.</li>
+                <li><strong>Inline-block:</strong> Híbrido dos dois.</li>
+                <li><strong>None:</strong> Desaparece.</li>
+                <li><strong>Span:</strong> O container inline genérico.</li>
+            </ul>
+        </div>
+
+        <div class="slide">
+            <h2>1. Display: Block</h2>
+            <p>Elementos em bloco sempre começam em uma nova linha e ocupam toda a largura disponível (esticam da esquerda à direita).</p>
+            <p>Exemplos comuns: <code>&lt;div&gt;</code>, <code>&lt;p&gt;</code>, <code>&lt;h1&gt;</code>.</p>
+            
+            <pre>.caixa {
+  display: block;
+  /* Largura será 100% por padrão */
+}</pre>
+
+            <div class="demo-area">
+                <div class="ex-block">Bloco 1 (Sou uma div)</div>
+                <div class="ex-block">Bloco 2 (Empilho em baixo)</div>
+                <span style="font-size: 0.8rem; color: #666;">Note que eles não ficam lado a lado, mesmo sendo curtos.</span>
+            </div>
+        </div>
+
+        <div class="slide">
+            <h2>2. Display: Inline</h2>
+            <p>Elementos inline ocupam apenas a largura necessária pelo seu conteúdo. Eles não quebram linha.</p>
+            <p><strong>Atenção:</strong> Em elementos inline, definir <code>width</code>, <code>height</code>, <code>margin-top</code> ou <code>margin-bottom</code> geralmente não funciona.</p>
+            
+            <pre>.texto {
+  display: inline;
+  background: green;
+}</pre>
+
+            <div class="demo-area">
+                <p>Aqui temos um texto normal e <div class="ex-inline">este div virou inline</div> no meio da frase. <div class="ex-inline">Outro inline</div> aqui.</p>
+            </div>
+        </div>
+
+        <div class="slide">
+            <h2>3. Display: Inline-Block</h2>
+            <p>O "melhor dos dois mundos". Ele flui na mesma linha (como o inline), mas permite definir largura, altura e margens (como o block).</p>
+            <p>É muito usado para menus de navegação, galerias e botões.</p>
+
+            <pre>.card {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+}</pre>
+
+            <div class="demo-area">
+                <div class="ex-inline-block">Card 1</div>
+                <div class="ex-inline-block">Card 2</div>
+                <div class="ex-inline-block">Card 3</div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <h2>4. Display: None</h2>
+            <p>Remove o elemento completamente do documento. É como se ele nunca tivesse existido no HTML. O espaço que ele ocupava deixa de existir.</p>
+            
+            <pre>.escondido {
+  display: none;
+}</pre>
+
+            <div class="demo-area">
+                <p>Clique para testar:</p>
+                <div id="magicBox" class="caixa-magica">Estou aqui</div>
+                <div style="text-align: center;">
+                    <button class="btn-toggle" onclick="toggleDisplay()">Alternar (None vs Block)</button>
+                </div>
+            </div>
+        </div>
+
+
+        
+                <div class="slide">
+            <h2>5. A Tag &lt;span&gt;</h2>
+            <p>O <code>&lt;span&gt;</code> é um container genérico <strong>inline</strong>. </p>
+            <p>Diferente da <code>&lt;div&gt;</code> (que é block), o span é usado para estilizar pedaços de texto ou agrupar elementos dentro de uma linha sem quebrar o fluxo.</p>
+            
+            <pre>&lt;p&gt;Preço: &lt;span class="destaque"&gt;R$ 50,00&lt;/span&gt;&lt;/p&gt;
+
+/* CSS */
+.destaque { color: red; }</pre>
+
+            <div class="demo-area">
+                <p>Este é um texto normal, mas <span class="texto-destaque">estas palavras</span> estão dentro de um span estilizado.</p>
+            </div>
+        </div>
+
+                <div class="slide">
+            <h2>6. Atividade Prática!</h2>
+        
+            <div class="demo-area">
+                <code>
+                    Este trabalho visa seu conhecimento em atrelar diretórios de arquivos de forma organizada e funcional. Siga os passos abaixo para completar a atividade:
+                    <ul>
+                    <li>1 - Crie um projeto chamado cinema.</li>
+                   <li> 2 - Crie um arquivo index.html</li>
+                   <li> 2.1 - O título do arquivo e o título de nível 1 devem conter o nome do projeto.</li>
+                    
+                    <li>3 - Crie um diretório dentro do projeto com nome de: estados</li>
+                    
+                    <li>4 - Em estados crie dois arquivos: rj.html e sp.html</li>
+                    <li>4.1 - Adicionar link levando para o início do site.</li>
+                   <li> 4.2 - Adicionar título de nível 1 com o nome do estado.</li>
+                    <li>4.3 - Adicionar os seguintes parágrafos (cada filme é um parágrafo):</li>
+                    
+                    <li>(Rio de Janeiro)</li>
+                    <li>Lisbela e o Prisioneiro - 20:00 - Hoje</li>
+                    <li>Meu nome não é Jhonny - 21:00 - Hoje</li>
+                    <li>O Cheiro do ralo - 15:00 - Amanhã</li>
+                    
+                    <li>(São Paulo)</li>
+                    <li>Lisbela e o Prisioneiro - 20:00 - Hoje</li>
+                    <li>Meu nome não é Jhonny - 21:00 - Amanhã</li>
+                    <li>O Cheiro do ralo - 15:00 - Amanhã</li>
+                    
+                   <li> 5 - Crie um link para cada cidade na página inicial para.</li>
+                    <li>5.1 - O link deve estar dentro de um título de nível 2.</li>
+                    
+                   <li> 6 - Crie um arquivo de estilo dentro de um diretório chamado css.</li>
+                   <li> 6.1 - Link o arquivo em todas as páginas.</li>
+                   <li> 6.2 - Mude a cor dos filmes que estreiam hoje para darkred.</li>
+                   <li> 6.3 - Mude a cor dos filmes que estreiam amanhã para darkblue.</li>
+                   <li> 6.4 - Remova o sublinhado de todos os links do site.</li>
+                   <li> 6.5 - Mude a cor dos links que estão dentro do título de nível 2 para seagreen.</li>
+                   <li> 6.6 - Aumente a fonte dos parágrafos para 20px.</li>
+                   <li> 6.7 - Mude a família da fonte de todo o site para Arial.</li>
+                </ul>
+</code>    
+            </div>
+        </div>
+
+        <div class="slide">
+            <h2>7. Atividade Prática 2!</h2>
+        
+            <div class="demo-area">
+                <code>
+                    <ul>
+                    <li>Com os cards do exercício de fundamentos, utilize Display None de modo que o título H1 não seja visível em visualização.</li>
+                    <li>Com os cards do exercício de fundamentos, utilize Display inline-block de modo que os cards fiquem um ao lado do outro.</li>
+                  
+                </ul>
+</code>    
+            </div>
+        </div>
+
+        <div class="controls">
+            <button id="prevBtn" class="secondary" disabled>Anterior</button>
+            <button id="nextBtn">Próximo</button>
+        </div>
+    </div>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        const nextBtn = document.getElementById('nextBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        const stepCount = document.getElementById('step-count');
+        
+        let currentSlide = 0;
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[index].classList.add('active');
+            
+            stepCount.innerText = index + 1;
+
+            prevBtn.disabled = index === 0;
+
+            if (index === slides.length - 1) {
+                nextBtn.innerText = "Reiniciar";
+            } else {
+                nextBtn.innerText = "Próximo";
+            }
+        }
+
+        nextBtn.addEventListener('click', () => {
+            if (currentSlide < slides.length - 1) {
+                currentSlide++;
+            } else {
+                                alert("Parabéns! Até o momento, isto é tudo.");
+                currentSlide = 0; // Reinicia
+                showSlide(currentSlide);
+            }
+            showSlide(currentSlide);
+        });
+
+        prevBtn.addEventListener('click', () => {
+            if (currentSlide > 0) {
+                currentSlide--;
+                showSlide(currentSlide);
+            }
+        });
+
+        // Função específica para o exemplo de display: none
+        function toggleDisplay() {
+            const box = document.getElementById('magicBox');
+            if (box.style.display === 'none') {
+                box.style.display = 'block';
+            } else {
+                box.style.display = 'none';
+            }
+        }
+
+        // Inicializa
+        showSlide(currentSlide);
+    </script>
+</body>
+</html>
