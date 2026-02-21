@@ -16,12 +16,49 @@
     <a href="/forms.html">Contato</a>
   </div>
 
-    <form>
-        <label for="nome">Nome: </label>
-        <input type="text" id="nome" name="nome">
-        <label for="nome">Nome: </label>
-        <input type="text" id="nome" name="nome">
+
+    <div class="div_forms">
+    <form class="forms">
+
+        <div class="separador">
+        <label for="nome" class="label_width">Nome:</label>
+        <input type="text" id="nome" name="nome" placeholder="Digite o seu nome">
+        </div>
+
+        <div class="separador">
+        <label for="email" class="label_width">E-mail:</label>
+        <input type="email" id="email" name="email" placeholder="Digite o seu e-mail" >
+        </div>
+
+        <div class="separador">
+        <p>Tipo de BikCraft</p>
+
+        <div>
+        <input type="radio" id="economica" name="bike_type" value="economica">
+        <label for="economica">Econônimca</label>
+        </div>
+
+        <div>
+        <input type="radio" id="mid-t" name="bike_type" value="mid-t">
+        <label for="mid-t">Mid-T</label>
+        </div>
+
+        <div>
+        <input type="radio" name="bike_type" id="fast-v">
+        <label for="fast-v">Fast-V</label>
+        </div>
+
+        </div>
+
+        <div class="separador">
+        <label for="mensagem" class="mensagem">Mensagem:</label>
+        <textarea type="text" id="mensagem" name="mensagem" placeholder="Digite a mensagem" rows="5" class="mensagem"></textarea>
+        </div>
+
+        <button class="botao_enviar">Enviar</button>
+
     </form>
+    </div>
     
 </body>
 </html>

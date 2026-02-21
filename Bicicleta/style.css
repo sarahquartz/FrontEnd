@@ -138,3 +138,43 @@ p {
   padding: 40px;
   box-sizing: border-box;
 }
+
+.forms{
+  display: flex;
+  flex-direction: column;
+}
+
+.separador{
+  margin: 10px;
+}
+
+.label_width{
+  display: inline-block;
+  width: 50px;
+}
+
+.div_forms{
+  background: linear-gradient(45deg, #fff 80%, rgba(238, 35, 17, 0.623) 20%);
+  border-radius: 10px;
+  box-shadow: 1px 1px 3px 1px rgb(59, 9, 4);
+}
+
+.mensagem{
+  display: block;
+  width: 100%;
+}
+
+.botao_enviar{
+  margin: 10px;
+  color: #fff;
+  background: #e21;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.botao_enviar:hover{
+    transform: scale(1.01);
+    transition: 0.2s;
+    background: rgb(172, 26, 13);
+    cursor: pointer;
+}
